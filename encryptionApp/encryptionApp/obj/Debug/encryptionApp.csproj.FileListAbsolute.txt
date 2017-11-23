@@ -5,3 +5,10 @@ C:\Users\Eric\source\repos\encryptionApp\encryptionApp\obj\Debug\encryptionApp.c
 C:\Users\Eric\source\repos\encryptionApp\encryptionApp\obj\Debug\encryptionApp.csproj.CoreCompileInputs.cache
 C:\Users\Eric\source\repos\encryptionApp\encryptionApp\obj\Debug\encryptionApp.exe
 C:\Users\Eric\source\repos\encryptionApp\encryptionApp\obj\Debug\encryptionApp.pdb
+E:\Code\simpleEncryptionApp\encryptionApp\encryptionApp\bin\Debug\encryptionApp.exe.config
+E:\Code\simpleEncryptionApp\encryptionApp\encryptionApp\bin\Debug\encryptionApp.exe
+E:\Code\simpleEncryptionApp\encryptionApp\encryptionApp\bin\Debug\encryptionApp.pdb
+E:\Code\simpleEncryptionApp\encryptionApp\encryptionApp\obj\Debug\encryptionApp.csprojResolveAssemblyReference.cache
+E:\Code\simpleEncryptionApp\encryptionApp\encryptionApp\obj\Debug\encryptionApp.csproj.CoreCompileInputs.cache
+E:\Code\simpleEncryptionApp\encryptionApp\encryptionApp\obj\Debug\encryptionApp.exe
+E:\Code\simpleEncryptionApp\encryptionApp\encryptionApp\obj\Debug\encryptionApp.pdb

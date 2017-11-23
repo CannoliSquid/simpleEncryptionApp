@@ -28,6 +28,8 @@ namespace encryptionApp
                 string inputString = "";
                 //"What is it like now?"
                 string endString = "";
+                //Number var
+                int inputNum = 0;
 
                 //Direct and Prompt User
                 Console.WriteLine("Enter the name of the cipher/encryption method you would like to use. ");
@@ -37,8 +39,9 @@ namespace encryptionApp
                 {
                     Environment.Exit(0);
                 }
-                if (runType.ToLower() == "options")
+                else if (runType.ToLower() == "options")
                 {
+                    //Show users what kind of options are available
                     Console.WriteLine(" ");
                     Console.WriteLine("Type: ");
                     Console.WriteLine("'caesar' for the Caesar Cipher");
@@ -47,49 +50,73 @@ namespace encryptionApp
                     Console.WriteLine("'random' for a random cipher");
                     Console.WriteLine(" ");
                 }
-                if (runType.ToLower() == "caesar")
+                else if (runType.ToLower() == "caesar")
                 {
+                    //Report type chosen and prompt user for input
                     Console.WriteLine(" ");
                     Console.WriteLine("Type chosen: Caesar");
                     Console.WriteLine("Please enter the string you would like encrypted: ");
+                    //Grab input and run given function
                     inputString = Console.ReadLine();
-                    endString = caesarFunc(inputString);
+                    Console.WriteLine(" ");
+                    //Prompt for shift
+                    Console.WriteLine("Please enter a number greater than 0: ");
+                    //Grab input and run given function
+                    inputNum = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine(" ");
+                    //Fill End String
+                    endString = caesarFunc(inputString.ToLower(), inputNum);
+                    Console.WriteLine(" ");
+                    //Output string given by function
                     Console.WriteLine("Your encrypted string is: " + endString);
                     Console.WriteLine(" ");
                 }
-                if (runType.ToLower() == "morse")
+                else if (runType.ToLower() == "morse")
                 {
+                    //Report type chosen and prompt user for input
                     Console.WriteLine(" ");
                     Console.WriteLine("Type chosen: Morse");
                     Console.WriteLine("Please enter the string you would like encrypted: ");
+                    //Grab input and run given function
                     inputString = Console.ReadLine();
-                    endString = morseFunc(inputString);
+                    endString = morseFunc(inputString.ToLower());
+                    Console.WriteLine(" ");
+                    //Output string given by function
                     Console.WriteLine("Your encrypted string is: " + endString);
                     Console.WriteLine(" ");
                 }
-                if (runType.ToLower() == "hill")
+                else if (runType.ToLower() == "hill")
                 {
+                    //Report type chosen and prompt user for input
                     Console.WriteLine(" ");
                     Console.WriteLine("Type chosen: Hill");
                     Console.WriteLine("Please enter the string you would like encrypted: ");
+                    //Grab input and run given function
                     inputString = Console.ReadLine();
                     endString = hillFunc(inputString);
+                    Console.WriteLine(" ");
+                    //Output string given by function
                     Console.WriteLine("Your encrypted string is: " + endString);
                     Console.WriteLine(" ");
                 }
-                if (runType.ToLower() == "random")
+                else if (runType.ToLower() == "random")
                 {
                     //Add a random number generator to choose which method gets picked.
                     Console.WriteLine(" ");
                     Console.WriteLine("Type chosen: Random");
                     Console.WriteLine("Please enter the string you would like encrypted: ");
+                    //Grab input and run given function
                     inputString = Console.ReadLine();
+                    endString = hillFunc(inputString);
+                    Console.WriteLine(" ");
+                    //Output string given by function
+                    Console.WriteLine("Your encrypted string is: " + endString);
                     Console.WriteLine(" ");
                 }
             }
         }
 
-        private static string caesarFunc(string input)
+        private static string caesarFunc(string input, int num)
         {
             //Variables
             StringBuilder transformedString = new StringBuilder();
@@ -97,29 +124,22 @@ namespace encryptionApp
             char[] charPoolArray = charPool.ToCharArray();
             char findChar;
             char changedChar;
-            string spacelessInput = input.Replace(" ", "");
 
             //Break input into a separate char array
-            char[] inputCharArray = spacelessInput.ToCharArray();
+            char[] inputCharArray = input.ToCharArray();
 
             //Find 
-            for(int i = 0; i < spacelessInput.Length; i++)
+            for(int i = 0; i < input.Length; i++)
             {
                 //Find the index of the first character in the inputCharArray
                 findChar = inputCharArray[i];
-
-                //fix this check to see if its a number
-                if (findChar==0)
-                {
-
-                }
-
+                
                 //Another for loop to loop through the charPoolArray with the findChar
                 for (int j = 0; j < charPool.Length; j++)
                 {
-                    if(charPoolArray[j] == findChar)
+                    if (charPoolArray[j] == findChar)
                     {
-                        int k = j+3;
+                        int k = j + num;
 
                         if (k > 25)
                         {
@@ -143,13 +163,98 @@ namespace encryptionApp
 
         private static string morseFunc(string input)
         {
-            string transformedString = "";
+            //Variable
+            string almostFinalString = "";
+            string finalString = "";
 
-            return transformedString;
+            //Dictionary
+            Dictionary<char, string> morseDict = new Dictionary<char, string>()
+            {
+                {'a', ".-"},
+                {'b', "-..."},
+                {'c', "-.-." },
+                {'d', "-.." },
+                {'e', "."},
+                {'f', "..-."},
+                {'g', "--."},
+                {'h', "...."},
+                {'i', ".."},
+                {'j', ".---"},
+                {'k', "-.-"},
+                {'l', ".-.."},
+                {'m', "--"},
+                {'n', "-."},
+                {'o', "---"},
+                {'p', ".--."},
+                {'q', "--.-"},
+                {'r', ".-."},
+                {'s', "..."},
+                {'t', "-"},
+                {'u', "..-"},
+                {'v', "...-"},
+                {'w', ".--"},
+                {'x', "-..-"},
+                {'y', "-.--"},
+                {'z', "--.."},
+                {'0', "-----"},
+                {'1', ".----"},
+                {'2', "..---"},
+                {'3', "...--"},
+                {'4', "....-"},
+                {'5', "....."},
+                {'6', "-...."},
+                {'7', "--..."},
+                {'8', "---.."},
+                {'9', "----."},
+                {'.', ".-.-.-"},
+                {',', "--..--"},
+                {'!', "-.-.--"},
+                {'?', "..--.."},
+                {'(', "-.--."},
+                {')', "-.--.-"},
+                {'&', ".-..."},
+                {':', "---..."},
+                {';', "-.-.-."},
+                {'=', "-...-"},
+                {'_', "..--.-"},
+                {'@', ".--.-."},
+                {'$', "...-..-"},
+                {'-', "-....-"},
+                {'/', "-..-."}
+            };
+
+            //Stringbuilder for easy char append
+            StringBuilder transformedString = new StringBuilder();
+
+            foreach (char character in input)
+            {
+                if (morseDict.ContainsKey(character))
+                {
+                    transformedString.Append(morseDict[character] + " ");
+                }
+                else if (character == ' ')
+                {
+                    transformedString.Append("/ ");
+                }
+                else
+                {
+                    transformedString.Append(character + " ");
+                }
+            }
+
+            //Almost final string.
+            almostFinalString = transformedString.ToString();
+
+            //Check for apostrophes and replace, put into final string.
+            finalString = almostFinalString.Replace("'", ".----.");
+
+            //Return final string.
+            return finalString;
         }
 
         private static string hillFunc(string input)
         {
+            //Variables
             string transformedString = "";
 
             return transformedString;
