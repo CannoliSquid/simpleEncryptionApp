@@ -35,83 +35,81 @@ namespace encryptionApp
                 Console.WriteLine("Enter the name of the cipher/encryption method you would like to use. ");
                 Console.WriteLine("Enter 'q' to exit or 'options' to see what forms of encryption/ciphers are available): ");
                 runType = Console.ReadLine();
-                if (runType.ToLower() == "q")
+
+                switch(runType.ToLower())
                 {
-                    Environment.Exit(0);
-                }
-                else if (runType.ToLower() == "options")
-                {
-                    //Show users what kind of options are available
-                    Console.WriteLine(" ");
-                    Console.WriteLine("Type: ");
-                    Console.WriteLine("'caesar' for the Caesar Cipher");
-                    Console.WriteLine("'morse' for Morse Code");
-                    Console.WriteLine("'hill' for the Hill Cipher");
-                    Console.WriteLine("'random' for a random cipher");
-                    Console.WriteLine(" ");
-                }
-                else if (runType.ToLower() == "caesar")
-                {
-                    //Report type chosen and prompt user for input
-                    Console.WriteLine(" ");
-                    Console.WriteLine("Type chosen: Caesar");
-                    Console.WriteLine("Please enter the string you would like encrypted: ");
-                    //Grab input and run given function
-                    inputString = Console.ReadLine();
-                    Console.WriteLine(" ");
-                    //Prompt for shift
-                    Console.WriteLine("Please enter a number greater than 0: ");
-                    //Grab input and run given function
-                    inputNum = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine(" ");
-                    //Fill End String
-                    endString = caesarFunc(inputString.ToLower(), inputNum);
-                    Console.WriteLine(" ");
-                    //Output string given by function
-                    Console.WriteLine("Your encrypted string is: " + endString);
-                    Console.WriteLine(" ");
-                }
-                else if (runType.ToLower() == "morse")
-                {
-                    //Report type chosen and prompt user for input
-                    Console.WriteLine(" ");
-                    Console.WriteLine("Type chosen: Morse");
-                    Console.WriteLine("Please enter the string you would like encrypted: ");
-                    //Grab input and run given function
-                    inputString = Console.ReadLine();
-                    endString = morseFunc(inputString.ToLower());
-                    Console.WriteLine(" ");
-                    //Output string given by function
-                    Console.WriteLine("Your encrypted string is: " + endString);
-                    Console.WriteLine(" ");
-                }
-                else if (runType.ToLower() == "hill")
-                {
-                    //Report type chosen and prompt user for input
-                    Console.WriteLine(" ");
-                    Console.WriteLine("Type chosen: Hill");
-                    Console.WriteLine("Please enter the string you would like encrypted: ");
-                    //Grab input and run given function
-                    inputString = Console.ReadLine();
-                    endString = hillFunc(inputString);
-                    Console.WriteLine(" ");
-                    //Output string given by function
-                    Console.WriteLine("Your encrypted string is: " + endString);
-                    Console.WriteLine(" ");
-                }
-                else if (runType.ToLower() == "random")
-                {
-                    //Add a random number generator to choose which method gets picked.
-                    Console.WriteLine(" ");
-                    Console.WriteLine("Type chosen: Random");
-                    Console.WriteLine("Please enter the string you would like encrypted: ");
-                    //Grab input and run given function
-                    inputString = Console.ReadLine();
-                    endString = hillFunc(inputString);
-                    Console.WriteLine(" ");
-                    //Output string given by function
-                    Console.WriteLine("Your encrypted string is: " + endString);
-                    Console.WriteLine(" ");
+                    case "q":
+                        Environment.Exit(0);
+                        break;
+                    case "options":
+                        //Show users what kind of options are available
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Type: ");
+                        Console.WriteLine("'caesar' for the Caesar Cipher");
+                        Console.WriteLine("'morse' for Morse Code");
+                        Console.WriteLine("'hill' for the Hill Cipher");
+                        Console.WriteLine("'random' for a random cipher");
+                        Console.WriteLine(" ");
+                        break;
+                    case "caesar":
+                        //Report type chosen and prompt user for input
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Type chosen: Caesar");
+                        Console.WriteLine("Please enter the string you would like encrypted: ");
+                        //Grab input and run given function
+                        inputString = Console.ReadLine();
+                        Console.WriteLine(" ");
+                        //Prompt for shift
+                        Console.WriteLine("Please enter a number greater than 0: ");
+                        //Grab input and run given function
+                        inputNum = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine(" ");
+                        //Fill End String
+                        endString = caesarFunc(inputString.ToLower(), inputNum);
+                        Console.WriteLine(" ");
+                        //Output string given by function
+                        Console.WriteLine("Your encrypted string is: " + endString);
+                        Console.WriteLine(" ");
+                        break;
+                    case "morse":
+                        //Report type chosen and prompt user for input
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Type chosen: Morse");
+                        Console.WriteLine("Please enter the string you would like encrypted: ");
+                        //Grab input and run given function
+                        inputString = Console.ReadLine();
+                        endString = morseFunc(inputString.ToLower());
+                        Console.WriteLine(" ");
+                        //Output string given by function
+                        Console.WriteLine("Your encrypted string is: " + endString);
+                        Console.WriteLine(" ");
+                        break;
+                    case "hill":
+                        //Report type chosen and prompt user for input
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Type chosen: Hill");
+                        Console.WriteLine("Please enter the string you would like encrypted: ");
+                        //Grab input and run given function
+                        inputString = Console.ReadLine();
+                        endString = hillFunc(inputString);
+                        Console.WriteLine(" ");
+                        //Output string given by function
+                        Console.WriteLine("Your encrypted string is: " + endString);
+                        Console.WriteLine(" ");
+                        break;
+                    case "random":
+                        //Add a random number generator to choose which method gets picked.
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Type chosen: Random");
+                        Console.WriteLine("Please enter the string you would like encrypted: ");
+                        //Grab input and run given function
+                        inputString = Console.ReadLine();
+                        endString = hillFunc(inputString);
+                        Console.WriteLine(" ");
+                        //Output string given by function
+                        Console.WriteLine("Your encrypted string is: " + endString);
+                        Console.WriteLine(" ");
+                        break;
                 }
             }
         }
@@ -256,6 +254,43 @@ namespace encryptionApp
         {
             //Variables
             string transformedString = "";
+
+            //Dictionary -- each letter represented by a number mod 26
+            Dictionary<char, int> morseDict = new Dictionary<char, int>()
+            {
+                {'a', 0},
+                {'b', 1},
+                {'c', 2 },
+                {'d', 3 },
+                {'e', 4},
+                {'f', 5},
+                {'g', 6},
+                {'h', 7},
+                {'i', 8},
+                {'j', 9},
+                {'k', 10},
+                {'l', 11},
+                {'m', 12},
+                {'n', 13},
+                {'o', 14},
+                {'p', 15},
+                {'q', 16},
+                {'r', 17},
+                {'s', 18},
+                {'t', 19},
+                {'u', 20},
+                {'v', 21},
+                {'w', 22},
+                {'x', 23},
+                {'y', 24},
+                {'z', 25}
+            };
+            //Get input and input length (n)
+            //get encrpytion key (length of n^2 turns into n x n matrix)
+            //multiply n x n matrix by matrix of n x 1 input
+            //take product and mod 26, convert back to letters according to dictionary.
+            //for decryption, make sure the matrix is invertible.
+            //return ciphertext (of length n)
 
             return transformedString;
         }
